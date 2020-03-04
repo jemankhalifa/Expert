@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template">
+
+        <!-- Add button on top of keypad to list Orders of specific user POS ^_^ -->
+        <t t-name="ListOrders">
+            <div class='control-button'>
+                List Orders
+            </div>
+        </t>
+
+        <!-- List order lines (ref,amount in total) for each order-->
+        <t t-name="OrdersLines">
+            <tr class='order-line' t-att-data-id='order.id'>
+                <td><t t-esc='order.pos_reference' /></td>
+                <td><t t-esc='order.amount_total'/></td>
+            </tr>
+        </t>
+
+        <!-- For UX you must add back button-->
+        <t t-name="OrdersListScreen">
+        <div class="clientlist-screen screen">
+            <div class="screen-content">
+                <section class="top-content">
+                    <span class='button back'>
+                        Back
+                    </span>
+
+                 <!-- TODO Eman:You can filter orders to show only today orders or the default all orders
+                    <a type="button" class="dropdown-toggle" data-toggle="dropdown">
+                        <br/>
+                        <span class="fa fa-filter"/>
+                        filter by date: 
+                        <input type="radio" name="c_date" class="form-check-input">Today</input>
+                        <input type="radio" name="c_date" class="form-check" >All Orders</input> 
+                    </a>
+                -->            
+                </section>
+
+                <!-- The Window which contains the Orders-->
+                <section class="full-content">
+                    <div class='window'>
+                    
+                        <section class='subwindow'>
+                            <div>
+                                <table class='client-list'>
+                                    <thead>
+                                        <tr>
+                                            <th>Reference</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <!-- Fill body with order lines above-->
+                                    <tbody class='orders-lines'>
+                                    </tbody>
+
+                                </table>
+                                </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </t>
+
+</templates>

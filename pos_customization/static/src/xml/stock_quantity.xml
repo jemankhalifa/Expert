@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="pos_customization.extended_template" inherit_id="point_of_sale.template">
+    <t t-extend="Product">
+
+    	<!-- Add widget of product quantity in stock side of product image-->
+        <t t-jquery=".product-img" t-operation="after">
+            <span class="stock_quantity">
+            </span>
+        </t>
+    </t>
+
+</templates>

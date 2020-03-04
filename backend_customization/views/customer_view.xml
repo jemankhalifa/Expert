@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+ <record id="customer_form_view_inherit" model="ir.ui.view">
+        <field name="name">Customer</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//form/sheet/div[1]" position="before">  
+            	<header>
+                    <button name="to_approve" type="object" string="Approve" states="draft"/>
+          
+                    <field name="state" widget="statusbar" statusbar_visible="draft,approved" readonly="1" />
+                </header>
+
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

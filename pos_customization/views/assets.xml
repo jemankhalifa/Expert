@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- ADD CSS and JS files to asset -->
+        <template id="pos_customization.custom_assets" inherit_id="point_of_sale.assets" >
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/pos_customization/static/src/css/style.css"/>
+
+                <script type="text/javascript" src="/pos_customization/static/src/js/qty.js"></script>
+                <script type="text/javascript" src="/pos_customization/static/src/js/load.js"></script>
+
+                <script type="text/javascript" src="/pos_customization/static/src/js/all_orders.js"></script>
+
+                <script type="text/javascript" src="/pos_customization/static/src/js/validation.js"></script>
+
+                <script type="text/javascript" src="/pos_customization/static/src/js/discount_amount.js"></script>
+
+            </xpath>
+        </template>
+    </data>
+</odoo>

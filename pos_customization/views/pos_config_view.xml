@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit configuration of POS to add  the custom fields of discount and limit orders-->
+    <record id="custom_pos_config" model="ir.ui.view">
+        <field name="name">pos.config</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr='//div[@id="inventory_location"]' position='after'>
+                <h2>POS Control on Stock</h2>
+                
+
+                <div class="row mt16 o_settings_container" id="pos_discount">
+
+                    <!-- Limit Discount-->
+                    <div class="col-xs-12 col-md-6 o_setting_box"
+                         title="Limit Discount amount">
+                        <div class="o_setting_left_pane">
+                            <field name="limit_discount"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="limit_discount" string="Discount Amount limit"/>
+                        </div>
+                    </div>
+
+                     <div class="col-12 col-lg-6 o_setting_box" title="Discount Amount" attrs="{'invisible':[('limit_discount','!=',True)]}">
+                            <div class="o_setting_right_pane">
+                                <label for="pos_discount_amount" string="Discount Amount"/>
+                                <div class="text-muted">
+                                    Insert Discount amount
+                                </div>
+                                <div class="content-group mt16">
+                                    <field name="pos_discount_amount" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Limit Orders-->
+                        <div class="col-xs-12 col-md-6 o_setting_box"
+                             title="Limit Orders Count">
+                            <div class="o_setting_left_pane">
+                                <field name="limit_orders"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="limit_orders" string="Limit Orders"/>
+                            </div>
+                        </div>
+
+                         <div class="col-12 col-lg-6 o_setting_box" title="Min/Max orders per POS" attrs="{'invisible':[('limit_orders','!=',True)]}">
+                            <div class="o_setting_right_pane">
+                                <label for="pos_discount_amount" string="Min/Max orders per POS"/>
+                                <div class="text-muted">
+                                   Min/Max Discount Amount
+                                </div>
+                                <div class="content-group mt16">
+                                    <field name="min_orders" />
+                                    -                            
+                                    <field name="max_orders" />
+
+                                </div>
+                            </div>
+                        </div>
+    
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -13,15 +13,16 @@ class ResPartner(models.Model):
 
     state = fields.Selection([('draft','Draft'),('approved','Approved')],string="State",default='draft')
 
-    #TODO: make all fields readonly in approved state, add this to only cusomer partner, without view
     @api.multi
     def to_approve(self):
     	self.write({'state':'approved'})
 
+    #TODO: make all fields readonly in approved state, add this to only cusomer partner, without view
     @api.model
     def fields_view_get(self,view_id=None,view_type='form',toolbar=False,submenu=False):
     	context = self._context
-
+        '''Workaround to add field using etree and make fields readonly
+            TODO: refactore it and it was incorrect'''
     	res = super(ResPartner, self).fields_view_get(view_id=view_id, view_type=view_type, toolbar=toolbar,submenu=submenu)
     	arch = etree.XML(res['arch'])
     	if view_type == 'form':
@@ -36,10 +37,8 @@ class ResPartner(models.Model):
 
                 #print("IIIIIIIIIIIIIIIIIII",res['fields'])
                 for node in arch.xpath("//field"):
-                    setup_modifiers(node, res['fields']['name'])
                     #print("RRRRRRRRRRRRRRRRRRRRRR",node)
-                    node.set('modifiers',simplejson.dumps("{'readonly':true}"))
-                    #print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$",node)
-                res['arch'] = etree.tostring(arch, encoding='unicode')
+                    node.set('readonly','1')
+                res['arch'] = etree.tostring(arch)
 
     	return res

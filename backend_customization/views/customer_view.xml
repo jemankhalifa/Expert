@@ -6,7 +6,7 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-
+            <!-- TODO: After add this arch part from model remove this-->
             <xpath expr="//form/sheet/div[1]" position="before">  
             	<header>
                     <button name="to_approve" type="object" string="Approve" states="draft"/>

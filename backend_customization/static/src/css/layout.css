@@ -1,4 +1,5 @@
 
+/*To change the font and colors of top nav text*/
 .o_main_navbar > ul > li > a {
     color: red;
     font-size: 15px;
@@ -6,21 +7,21 @@
 
 }
 
+/*To change all top nav */
 .o_main_navbar  {
     height: 46px;
     padding: 0 10px;
     background-color: #3e2f42;
-    font-size: 15px;
 }
 
+/* Modify Primary buttons */
 .btn-primary{
     background-color: #3e2f42;
     color: red;
 }
 
+/*Modify on tree list view*/
 .o_list_view {
     cursor: pointer;
-    border-collapse: initial;
-    border-spacing: 0;
     background-color: #2334;
 }

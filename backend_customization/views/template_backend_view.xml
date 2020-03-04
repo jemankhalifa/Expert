@@ -3,6 +3,7 @@
 	<odoo>
 		<template id="assets_backend" name="Backend Assets" inherit_id="web.assets_backend">
 		<xpath expr="//link[last()]" position="after">
+			<!-- Add style and js to template-->
             <link rel="stylesheet" type="text/scss" href="/backend_customization/static/src/css/layout.css"/>
                     <script type="text/javascript" src="/backend_customization/static/src/js/user_db.js"></script>
 

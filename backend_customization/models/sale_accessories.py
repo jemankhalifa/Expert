@@ -26,27 +26,23 @@ class SaleOrderLine(models.Model):
     @api.onchange('product_id')
     def set_sequence(self):
         order_lines_len = self._context.get('order_line',False)
-        print("_________________",self.order_id.id)
         if order_lines_len != False:
-            print(":::::::::::::",len(order_lines_len))
             for rec in self:
-                print(">>>>>>>>>>>",rec)
                 rec.sequence_no = len(order_lines_len)
                 if rec.product_id.accessory_ids:
                     acc = []
-                    print("DDDDDDDDDDDDDDDDD",rec.product_id.accessory_ids)
                     # for p_acc in rec.product_id.accessory_ids:  
                     #     print("^^^^^^^^^^^^^^^^^^^^",p_acc)
                     #     acc.append({
                     #         'product_id': p_acc.name.id,
                     #         'product_uom_qty':p_acc.accessory_qty,
-                    #         'order_id':23,
+                    #         'order_id':self.id,
                     #         })
                     #     print("qqqqqqqqqqqqqqqqqqqqqqqqq",acc)
                     #     rec.create({
                     #         'product_id': p_acc.name.id,
                     #         'product_uom_qty':p_acc.accessory_qty,
-                    #         'order_id':23,
+                    #         'order_id':self.id,
                     #         })
                     #     print("aaaaaaaaaaaaaaaaaaaaaaa",rec)
           

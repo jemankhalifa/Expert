@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="attributes">  
-                
+                <!-- Add context to line to get seq-->
                        <attribute name="context">{'order_line':parent.order_line}</attribute>
                         
             </xpath>

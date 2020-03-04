@@ -25,7 +25,7 @@ class ResPartner(models.Model):
     	res = super(ResPartner, self).fields_view_get(view_id=view_id, view_type=view_type, toolbar=toolbar,submenu=submenu)
     	arch = etree.XML(res['arch'])
     	if view_type == 'form':
-            print("<<<<<<<<<<<<<<<<<",self.state)
+            #print("<<<<<<<<<<<<<<<<<",self.state)
             if context.get('search_default_customer', False) == 1 :
                 # res['fields']['state']['selection'] = "[('draft','Draft'),('approved','Approved')]"
                 res['fields'].update({"state":
@@ -34,12 +34,12 @@ class ResPartner(models.Model):
                     'selection':"[('draft','Draft'),('approved','Approved')]"}})
                 
 
-                print("IIIIIIIIIIIIIIIIIII",res['fields'])
+                #print("IIIIIIIIIIIIIIIIIII",res['fields'])
                 for node in arch.xpath("//field"):
                     setup_modifiers(node, res['fields']['name'])
-                    print("RRRRRRRRRRRRRRRRRRRRRR",node)
+                    #print("RRRRRRRRRRRRRRRRRRRRRR",node)
                     node.set('modifiers',simplejson.dumps("{'readonly':true}"))
-                    print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$",node)
+                    #print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$",node)
                 res['arch'] = etree.tostring(arch, encoding='unicode')
 
     	return res

@@ -35,18 +35,18 @@ class SaleOrderLine(models.Model):
                 if rec.product_id.accessory_ids:
                     acc = []
                     print("DDDDDDDDDDDDDDDDD",rec.product_id.accessory_ids)
-                    for p_acc in rec.product_id.accessory_ids:  
-                        print("^^^^^^^^^^^^^^^^^^^^",p_acc)
-                        acc.append({
-                            'product_id': p_acc.name.id,
-                            'product_uom_qty':p_acc.accessory_qty,
-                            'order_id':23,
-                            })
-                        print("qqqqqqqqqqqqqqqqqqqqqqqqq",acc)
-                        rec.create({
-                            'product_id': p_acc.name.id,
-                            'product_uom_qty':p_acc.accessory_qty,
-                            'order_id':23,
-                            })
-                        print("aaaaaaaaaaaaaaaaaaaaaaa",rec)
+                    # for p_acc in rec.product_id.accessory_ids:  
+                    #     print("^^^^^^^^^^^^^^^^^^^^",p_acc)
+                    #     acc.append({
+                    #         'product_id': p_acc.name.id,
+                    #         'product_uom_qty':p_acc.accessory_qty,
+                    #         'order_id':23,
+                    #         })
+                    #     print("qqqqqqqqqqqqqqqqqqqqqqqqq",acc)
+                    #     rec.create({
+                    #         'product_id': p_acc.name.id,
+                    #         'product_uom_qty':p_acc.accessory_qty,
+                    #         'order_id':23,
+                    #         })
+                    #     print("aaaaaaaaaaaaaaaaaaaaaaa",rec)
           

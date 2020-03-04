@@ -25,18 +25,21 @@ class ResPartner(models.Model):
     	res = super(ResPartner, self).fields_view_get(view_id=view_id, view_type=view_type, toolbar=toolbar,submenu=submenu)
     	arch = etree.XML(res['arch'])
     	if view_type == 'form':
-    		print("<<<<<<<<<<<<<<<<<",self.state)
-    		if context.get('search_default_customer', False) == 1 :
-    			custom_view = self.env['ir.ui.view'].search([('id', '=', view_id)], limit=1)
-    			result['fields'].update("n":{'String': , 'type':})
-                for cu in custom_view:
-    				print("_______________",cu)
+            print("<<<<<<<<<<<<<<<<<",self.state)
+            if context.get('search_default_customer', False) == 1 :
+                # res['fields']['state']['selection'] = "[('draft','Draft'),('approved','Approved')]"
+                res['fields'].update({"state":
+                    {'String':'Status' ,
+                    'type':'Selection',
+                    'selection':"[('draft','Draft'),('approved','Approved')]"}})
+                
 
-	    		for node in arch.xpath("//field"):   # All the view fields to readonly
-	    			print("RRRRRRRRRRRRRRRRRRRRRR",node)
-	    			
-	    			node.set('modifiers',simplejson.dumps("{'readonly':true}"))
-	    			print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$",node)
-	    		res['arch'] = etree.tostring(arch)
+                print("IIIIIIIIIIIIIIIIIII",res['fields'])
+                for node in arch.xpath("//field"):
+                    setup_modifiers(node, res['fields']['name'])
+                    print("RRRRRRRRRRRRRRRRRRRRRR",node)
+                    node.set('modifiers',simplejson.dumps("{'readonly':true}"))
+                    print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$",node)
+                res['arch'] = etree.tostring(arch, encoding='unicode')
 
     	return res
